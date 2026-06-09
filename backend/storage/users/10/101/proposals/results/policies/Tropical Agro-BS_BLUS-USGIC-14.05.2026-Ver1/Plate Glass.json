@@ -1,0 +1,59 @@
+{
+    "company": "Tropical Agro-BS_BLUS-USGIC-14.05.2026-Ver1",
+    "policy": "Plate Glass",
+    "column_mapping": {
+        "clause_column": 2,
+        "requirement_column": 3,
+        "uw_remark_column": 6
+    },
+    "clauses": [
+        {
+            "clause": "Coverage as per standard Plate glass",
+            "requirement": "Required",
+            "uw_remark": "As per USGIC std BS BLUS policy",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 88,
+                "clause_cell": "B88",
+                "requirement_cell": "C88",
+                "uw_remark_cell": "F88"
+            }
+        },
+        {
+            "clause": "FAR Clause/ Asset register Clause",
+            "requirement": "Required",
+            "uw_remark": "Asset register Clause covered",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 89,
+                "clause_cell": "B89",
+                "requirement_cell": "C89",
+                "uw_remark_cell": "F89"
+            }
+        },
+        {
+            "clause": "Accidental Damage",
+            "requirement": "Required",
+            "uw_remark": "Not Agreed",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 90,
+                "clause_cell": "B90",
+                "requirement_cell": "C90",
+                "uw_remark_cell": "F90"
+            }
+        },
+        {
+            "clause": "Excess",
+            "requirement": "5% of the claim amount suject to minimum of INR 5000 for each claim",
+            "uw_remark": "5% of claim amount subject to minimum of Rs 2500/- under each and every claim.",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 92,
+                "clause_cell": "B92",
+                "requirement_cell": "C92",
+                "uw_remark_cell": "F92"
+            }
+        }
+    ]
+}

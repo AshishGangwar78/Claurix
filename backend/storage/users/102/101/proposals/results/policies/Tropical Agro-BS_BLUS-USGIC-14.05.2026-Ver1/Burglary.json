@@ -1,0 +1,22 @@
+{
+    "policy_type": "EEI (Electronic Equipment Insurance)",
+    "total_premium": 6531.24,
+    "risk_factors_and_coverage_details": [
+        {
+            "coverage_item": "On Account payment",
+            "status": "Not Agreed",
+            "excess_amount": 405.29
+        },
+        {
+            "coverage_item": "Excess",
+            "rate": "5% of the Claim amount subject to minimum of INR 2500 for EEL."
+        },
+        {
+            "coverage_item": "On Account payment",
+            "status": "Not Agreed",
+            "excess_amount": 405.29
+        }
+    ],
+    "sum_insured": 26,
+    "079,970.72 (formatted as ₹26,079,970.72 for readability). Note that the exact formatting of large numbers might depend on your preferred locale or standards; this is in a typical Indian format., which represents the total insured value under the EEI policy. The ": " symbol was used to separate sections, and "
+}

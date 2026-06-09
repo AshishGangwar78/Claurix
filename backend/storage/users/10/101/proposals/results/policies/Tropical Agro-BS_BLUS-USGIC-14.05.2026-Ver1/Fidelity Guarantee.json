@@ -1,0 +1,47 @@
+{
+    "company": "Tropical Agro-BS_BLUS-USGIC-14.05.2026-Ver1",
+    "policy": "Fidelity Guarantee",
+    "column_mapping": {
+        "clause_column": 2,
+        "requirement_column": 3,
+        "uw_remark_column": 6
+    },
+    "clauses": [
+        {
+            "clause": "Al the coverages as per Fidelity Policy",
+            "requirement": "Yes",
+            "uw_remark": "As per USGIC std BS BLUS policy",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 97,
+                "clause_cell": "B97",
+                "requirement_cell": "C97",
+                "uw_remark_cell": "F97"
+            }
+        },
+        {
+            "clause": "Wavier of final FIR for lessthan INR 2 Lakhs Claims",
+            "requirement": "Yes",
+            "uw_remark": "Not Agreed",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 98,
+                "clause_cell": "B98",
+                "requirement_cell": "C98",
+                "uw_remark_cell": "F98"
+            }
+        },
+        {
+            "clause": "Excess - 5% of Claim Amount Minimum of INR 10,000/-",
+            "requirement": "Yes",
+            "uw_remark": "5% of claim amount subject to minimum of Rs 2500/- under each and every claim.",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 99,
+                "clause_cell": "B99",
+                "requirement_cell": "C99",
+                "uw_remark_cell": "F99"
+            }
+        }
+    ]
+}

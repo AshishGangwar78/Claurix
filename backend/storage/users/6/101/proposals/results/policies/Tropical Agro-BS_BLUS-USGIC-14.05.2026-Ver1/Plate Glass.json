@@ -1,0 +1,70 @@
+[
+    {
+        "row_id": 2,
+        "columns": [
+            {
+                "column_index": 2,
+                "value": "Coverage as per standard Plate glass"
+            },
+            {
+                "column_index": 3,
+                "value": "Required"
+            },
+            {
+                "column_index": 6,
+                "value": "As per USGIC std BS BLUS policy"
+            }
+        ]
+    },
+    {
+        "row_id": 3,
+        "columns": [
+            {
+                "column_index": 2,
+                "value": "FAR Clause/ Asset register Clause"
+            },
+            {
+                "column_index": 3,
+                "value": "Required"
+            },
+            {
+                "column_index": 6,
+                "value": "Asset register Clause covered"
+            }
+        ]
+    },
+    {
+        "row_id": 4,
+        "columns": [
+            {
+                "column_index": 2,
+                "value": "Accidental Damage"
+            },
+            {
+                "column_index": 3,
+                "value": "Required"
+            },
+            {
+                "column_index": 6,
+                "value": "Not Agreed"
+            }
+        ]
+    },
+    {
+        "row_id": 6,
+        "columns": [
+            {
+                "column_index": 2,
+                "value": "Excess"
+            },
+            {
+                "column_index": 3,
+                "value": "5% of the claim amount suject to minimum of INR 5000 for each claim"
+            },
+            {
+                "column_index": 6,
+                "value": "5% of claim amount subject to minimum of Rs 2500/- under each and every claim."
+            }
+        ]
+    }
+]

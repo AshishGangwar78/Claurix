@@ -1,0 +1,76 @@
+{
+    "company": "abc",
+    "policy": "Neon Signage",
+    "column_mapping": {
+        "clause_column": 1,
+        "requirement_column": 2,
+        "uw_remark_column": 3
+    },
+    "clauses": [
+        {
+            "clause": "Coverages asper Neon Signage",
+            "requirement": "500000",
+            "uw_remark": "",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 81,
+                "clause_cell": "A81",
+                "requirement_cell": "B81",
+                "uw_remark_cell": "C81"
+            },
+            "remark_status": "PARTIALLY_AGREED"
+        },
+        {
+            "clause": "FAR Clause/ Asset register Clause",
+            "requirement": "Required",
+            "uw_remark": "",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 82,
+                "clause_cell": "A82",
+                "requirement_cell": "B82",
+                "uw_remark_cell": "C82"
+            },
+            "remark_status": "PARTIALLY_AGREED"
+        },
+        {
+            "clause": "Accidental Damage",
+            "requirement": "Required",
+            "uw_remark": "",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 83,
+                "clause_cell": "A83",
+                "requirement_cell": "B83",
+                "uw_remark_cell": "C83"
+            },
+            "remark_status": "PARTIALLY_AGREED"
+        },
+        {
+            "clause": "Fire and Allied Peril including EQ and STFI",
+            "requirement": "",
+            "uw_remark": "",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 84,
+                "clause_cell": "A84",
+                "requirement_cell": "B84",
+                "uw_remark_cell": "C84"
+            },
+            "remark_status": "PARTIALLY_AGREED"
+        },
+        {
+            "clause": "Excess",
+            "requirement": "5% of the claim amount suject to minimum of INR 5000 for each claim",
+            "uw_remark": "",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 85,
+                "clause_cell": "A85",
+                "requirement_cell": "B85",
+                "uw_remark_cell": "C85"
+            },
+            "remark_status": "PARTIALLY_AGREED"
+        }
+    ]
+}

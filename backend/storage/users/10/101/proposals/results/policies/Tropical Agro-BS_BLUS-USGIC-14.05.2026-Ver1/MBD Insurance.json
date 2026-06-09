@@ -1,0 +1,71 @@
+{
+    "company": "Tropical Agro-BS_BLUS-USGIC-14.05.2026-Ver1",
+    "policy": "MBD Insurance",
+    "column_mapping": {
+        "clause_column": 2,
+        "requirement_column": 3,
+        "uw_remark_column": 6
+    },
+    "clauses": [
+        {
+            "clause": "Coverage as per Standard MBD Policy",
+            "requirement": "Yes",
+            "uw_remark": "As per USGIC std BS BLUS policy",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 67,
+                "clause_cell": "B67",
+                "requirement_cell": "C67",
+                "uw_remark_cell": "F67"
+            }
+        },
+        {
+            "clause": "FAR Clause/ Asset register Clause",
+            "requirement": "Yes",
+            "uw_remark": "Agreed as Asset register Clause",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 68,
+                "clause_cell": "B68",
+                "requirement_cell": "C68",
+                "uw_remark_cell": "F68"
+            }
+        },
+        {
+            "clause": "Omission to Insure - 5% of Sum Insured",
+            "requirement": "Yes",
+            "uw_remark": "Omission to Insure Additions, Alterations - Rs 10,00,000",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 69,
+                "clause_cell": "B69",
+                "requirement_cell": "C69",
+                "uw_remark_cell": "F69"
+            }
+        },
+        {
+            "clause": "Air Freight / Custom Duty Extension",
+            "requirement": "Yes",
+            "uw_remark": "Air Freight - Rs 10,00,000 and Additional Customs Duty - Rs 10,00,000",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 70,
+                "clause_cell": "B70",
+                "requirement_cell": "C70",
+                "uw_remark_cell": "F70"
+            }
+        },
+        {
+            "clause": "Excess: 1% of Sum insured of Each machine subject to minimum of Rs.2,500/-",
+            "requirement": "Yes",
+            "uw_remark": "As per MBD Tariff",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 72,
+                "clause_cell": "B72",
+                "requirement_cell": "C72",
+                "uw_remark_cell": "F72"
+            }
+        }
+    ]
+}

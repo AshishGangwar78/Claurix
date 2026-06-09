@@ -1,0 +1,71 @@
+{
+    "company": "Tropical Agro-BS_BLUS-USGIC-14.05.2026-Ver1",
+    "policy": "Neon Signage",
+    "column_mapping": {
+        "clause_column": 2,
+        "requirement_column": 3,
+        "uw_remark_column": 6
+    },
+    "clauses": [
+        {
+            "clause": "Coverages asper Neon Signage",
+            "requirement": "500000",
+            "uw_remark": "125",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 81,
+                "clause_cell": "B81",
+                "requirement_cell": "C81",
+                "uw_remark_cell": "F81"
+            }
+        },
+        {
+            "clause": "FAR Clause/ Asset register Clause",
+            "requirement": "Required",
+            "uw_remark": "Asset register Clause covered",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 82,
+                "clause_cell": "B82",
+                "requirement_cell": "C82",
+                "uw_remark_cell": "F82"
+            }
+        },
+        {
+            "clause": "Accidental Damage",
+            "requirement": "Required",
+            "uw_remark": "Not Agreed",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 83,
+                "clause_cell": "B83",
+                "requirement_cell": "C83",
+                "uw_remark_cell": "F83"
+            }
+        },
+        {
+            "clause": "Fire and Allied Peril including EQ and STFI",
+            "requirement": "",
+            "uw_remark": "Not Agreed",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 84,
+                "clause_cell": "B84",
+                "requirement_cell": "C84",
+                "uw_remark_cell": "F84"
+            }
+        },
+        {
+            "clause": "Excess",
+            "requirement": "5% of the claim amount suject to minimum of INR 5000 for each claim",
+            "uw_remark": "5% of claim amount subject to minimum of Rs 2500/- under each and every claim.",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 85,
+                "clause_cell": "B85",
+                "requirement_cell": "C85",
+                "uw_remark_cell": "F85"
+            }
+        }
+    ]
+}

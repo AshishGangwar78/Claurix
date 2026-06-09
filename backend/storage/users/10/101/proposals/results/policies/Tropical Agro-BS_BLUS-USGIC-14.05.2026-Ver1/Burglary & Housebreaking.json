@@ -1,0 +1,95 @@
+{
+    "company": "Tropical Agro-BS_BLUS-USGIC-14.05.2026-Ver1",
+    "policy": "Burglary & Housebreaking",
+    "column_mapping": {
+        "clause_column": 2,
+        "requirement_column": 3,
+        "uw_remark_column": 6
+    },
+    "clauses": [
+        {
+            "clause": "Addons Required / Condtions to be Agreed",
+            "requirement": "",
+            "uw_remark": "",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 45,
+                "clause_cell": "B45",
+                "requirement_cell": "C45",
+                "uw_remark_cell": "F45"
+            }
+        },
+        {
+            "clause": "Wavier of FIR",
+            "requirement": "Required",
+            "uw_remark": "Not Agreed",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 46,
+                "clause_cell": "B46",
+                "requirement_cell": "C46",
+                "uw_remark_cell": "F46"
+            }
+        },
+        {
+            "clause": "Theft",
+            "requirement": "Required",
+            "uw_remark": "Agreed",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 47,
+                "clause_cell": "B47",
+                "requirement_cell": "C47",
+                "uw_remark_cell": "F47"
+            }
+        },
+        {
+            "clause": "Riot, Strike & Malicious Damage + Dacoity",
+            "requirement": "Required",
+            "uw_remark": "Agreed as RSMD",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 48,
+                "clause_cell": "B48",
+                "requirement_cell": "C48",
+                "uw_remark_cell": "F48"
+            }
+        },
+        {
+            "clause": "Damage to property at the time of burglary",
+            "requirement": "Required",
+            "uw_remark": "Damage And/ Or Theft Of Parts Of The Building covered for Rs 10,00,000/-",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 49,
+                "clause_cell": "B49",
+                "requirement_cell": "C49",
+                "uw_remark_cell": "F49"
+            }
+        },
+        {
+            "clause": "Goods / Property Held in trust / Care / Custody & Control of Insured",
+            "requirement": "Required",
+            "uw_remark": "Goods / Property Held in trust covered if the value of the same is declared in the policy SI",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 51,
+                "clause_cell": "B51",
+                "requirement_cell": "C51",
+                "uw_remark_cell": "F51"
+            }
+        },
+        {
+            "clause": "Excess",
+            "requirement": "5% of the Claim amount subject to minimum of INR 2500 for EEL.",
+            "uw_remark": "5% of claim amount subject to minimum of Rs. 5000/- under each and every claim.",
+            "source": {
+                "sheet_name": "RFQ Package Policy",
+                "excel_row": 52,
+                "clause_cell": "B52",
+                "requirement_cell": "C52",
+                "uw_remark_cell": "F52"
+            }
+        }
+    ]
+}
