@@ -10,6 +10,7 @@ from backend.extraction.policy_block_extractor import extract_policy_block
 from backend.llm.policy_clause_extractor import extract_policy_clauses
 from backend.gap_analysis.process_policy import process_policy
 from backend.gap_analysis.policy_merger import (
+    json_to_excel,
     merge_policy_files
 )
 
@@ -322,6 +323,16 @@ async def upload_files(
                     indent=4,
                     ensure_ascii=False
                 )
+
+            excel_path = os.path.join(
+                merged_dir,
+                f"{policy_name}.xlsx"
+            )
+
+            json_to_excel(
+                merged_path,
+                excel_path
+            )
 
             print(
                 f"[MERGED] {policy_name}"
