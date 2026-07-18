@@ -1,230 +1,260 @@
 # Insurance Gap Analysis Backend
 
-## Overview
+Production-ready FastAPI backend for insurance proposal gap analysis. Upload insurer proposal Excel files, extract policy clauses with a local LLM (Ollama / Qwen), classify underwriting remarks, and merge multi-insurer results for comparison.
 
-This backend processes insurance proposal Excel files and extracts policy clauses, requirements, underwriting remarks, and proposal comparisons.
+## Features
 
-The system:
-
-1. Receives proposal files through API.
-2. Extracts policy blocks from Excel.
-3. Detects clause rows using Qwen.
-4. Identifies Clause / Requirement / UW Remark columns.
-5. Builds structured JSON.
-6. Classifies UW remarks as:
-
-   * AGREED
-   * NOT_AGREED
-   * PARTIALLY_AGREED
-7. Merges proposals from multiple insurers for comparison.
-
----
+- Upload RFQ or proposal documents via a multipart API
+- Extract policy row blocks from Excel by sheet and row range
+- Detect clause rows and map Clause / Requirement / UW Remark columns with Qwen
+- Classify UW remarks as `AGREED`, `NOT_AGREED`, or `PARTIALLY_AGREED`
+- Merge multiple insurer proposals into a side-by-side comparison
+- Export merged results to JSON and Excel
+- Clean layered architecture ready for PostgreSQL, auth, and background workers
 
 ## Tech Stack
 
-* FastAPI
-* Pandas
-* Ollama
-* Qwen 2.5 7B
-* Python 3.11+
+| Layer | Technology |
+| --- | --- |
+| API | FastAPI, Uvicorn |
+| Data | Pandas, OpenPyXL |
+| PDF (available) | pdfplumber |
+| LLM | Ollama + Qwen 2.5 7B |
+| Language | Python 3.11+ |
 
----
+## Folder Structure
 
-## Start Backend
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
+```text
+backend/
+├── api/                      # FastAPI routers / endpoints only
+├── services/
+│   ├── llm_service.py        # All LLM (Ollama) interactions
+│   ├── file_service.py       # Upload, paths, Excel/PDF helpers
+│   ├── analysis_service.py   # Upload orchestration workflow
+│   ├── gap_analyzer.py       # UW classification, merge, Excel export
+│   └── clause_extraction/    # Clause pipeline (modules 1–4)
+├── repositories/             # Placeholders for future PostgreSQL
+├── schemas/                  # Request/response schema models
+├── models/                   # Domain model placeholders
+├── utils/                    # Shared helpers
+├── core/                     # App config (storage path, etc.)
+├── storage/                  # Uploads and generated results
+├── extraction/               # Compatibility re-exports
+├── llm/                      # Compatibility re-exports
+├── gap_analysis/             # Compatibility re-exports
+└── main.py                   # Application entrypoint
 ```
 
-Start Ollama:
+Compatibility packages (`extraction/`, `llm/`, `gap_analysis/`) re-export the same public functions so existing integrations keep working.
+
+## Prerequisites
+
+1. **Python 3.11+** (3.12–3.14 also work with current wheels)
+2. **Ollama** installed and running locally
+3. **Qwen model** pulled:
 
 ```bash
 ollama serve
+ollama pull qwen2.5:7b
 ```
 
-Ensure model exists:
+## Installation
+
+Clone the repository:
 
 ```bash
-ollama run qwen2.5:7b
+git clone <your-repo-url>
+cd Insurance_Gap_Analysis
 ```
 
-Start API:
+### Virtual environment (Windows)
+
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+If PowerShell blocks activation:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+### Virtual environment (Linux / macOS)
 
 ```bash
-uvicorn backend.main:app --reload
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
-Backend URL:
+## Environment Variables
+
+A `.env` file is **not required** for the current release. Defaults are used for storage and the local Ollama client.
+
+Optional template:
+
+```bash
+cp .env.example .env
+```
+
+Future configuration keys (documented in `.env.example`):
+
+| Variable | Purpose | Required today |
+| --- | --- | --- |
+| `OLLAMA_HOST` | Ollama server URL | No |
+| `STORAGE_DIR` | Override storage root | No |
+| `LOG_LEVEL` | Logging verbosity | No |
+
+## Running the Application
+
+From the project root (with the virtual environment activated):
+
+```bash
+uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+API base URL:
 
 ```text
 http://127.0.0.1:8000
 ```
 
----
+## API Documentation (Swagger)
 
-## Upload API
+Interactive docs (recommended):
 
-### Endpoint
-
-```http
-POST /upload/
+```text
+http://127.0.0.1:8000/docs
 ```
 
-### Form Data
+Alternative ReDoc UI:
 
-| Field         | Type        | Required |
-| ------------- | ----------- | -------- |
-| user_id       | string      | Yes      |
-| case_id       | string      | Yes      |
-| document_type | string      | Yes      |
-| policy_config | JSON string | Yes      |
-| files         | Excel files | Yes      |
+```text
+http://127.0.0.1:8000/redoc
+```
 
----
+OpenAPI JSON:
 
-## document_type
+```text
+http://127.0.0.1:8000/openapi.json
+```
 
-Supported:
+## Endpoints
+
+### `GET /`
+
+Health / status check.
+
+**Response**
 
 ```json
-"proposals"
+{
+  "message": "Insurance Gap Analysis API Running"
+}
 ```
 
----
+### `POST /upload/`
 
-## Example policy_config
+Upload RFQ or proposal files and process policies.
+
+#### Form fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `user_id` | string | Yes | Tenant / user identifier |
+| `case_id` | string | Yes | Case identifier |
+| `document_type` | string | Yes | `rfq` or `proposals` |
+| `policy_config` | JSON string | For proposals | Policy sheet/row ranges |
+| `files` | file(s) | Yes | Excel proposal files |
+
+#### Example `policy_config`
 
 ```json
 [
-    {
-        "policy": "Neon Signage",
-        "sheet_name": "RFQ Package Policy",
-        "start_row": 80,
-        "end_row": 85
-    },
-    {
-        "policy": "Plate Glass",
-        "sheet_name": "RFQ Package Policy",
-        "start_row": 86,
-        "end_row": 92
-    }
+  {
+    "policy": "Neon Signage",
+    "sheet_name": "RFQ Package Policy",
+    "start_row": 80,
+    "end_row": 85
+  },
+  {
+    "policy": "Plate Glass",
+    "sheet_name": "RFQ Package Policy",
+    "start_row": 86,
+    "end_row": 92
+  }
 ]
 ```
 
----
-
-## Response
+#### Success response
 
 ```json
 {
-    "status": "success",
-    "user_id": "5",
-    "case_id": "101",
-    "document_type": "proposals",
-    "policies_processed": 10,
-    "files_uploaded": 2
+  "status": "success",
+  "user_id": "5",
+  "case_id": "101",
+  "document_type": "proposals",
+  "policies_processed": 10,
+  "files_uploaded": 2
 }
 ```
 
----
+## Storage Layout
 
-## Storage Structure
+Generated at runtime under `backend/storage/`:
 
 ```text
-backend/storage/
-
-users/
-└── {user_id}/
-    └── {case_id}/
-        └── proposals/
-            ├── uploads/
-            └── results/
-                ├── policies/
-                └── merged/
+backend/storage/users/{user_id}/{case_id}/{document_type}/
+├── uploads/
+└── results/
+    ├── policies/{company}/{policy}.json
+    └── merged/{policy}.json
+    └── merged/{policy}.xlsx
 ```
 
----
+User uploads and results are gitignored. An empty `backend/storage/` directory is kept in the repository.
 
-## Individual Policy Output
+## Processing Flow
 
-Example:
+1. API receives upload request
+2. Files are stored under the user/case path
+3. For `proposals`, each configured policy block is extracted from Excel
+4. Clause rows are detected and columns are mapped via Qwen
+5. Structured policy JSON is built and UW remarks are classified
+6. When multiple insurers exist for the same policy, results are merged and exported to Excel
 
-```json
-{
-    "company": "ABC Insurance",
-    "policy": "Neon Signage",
-    "column_mapping": {
-        "clause_column": 2,
-        "requirement_column": 3,
-        "uw_remark_column": 6
-    },
-    "clauses": [
-        {
-            "clause": "FAR Clause",
-            "requirement": "Required",
-            "uw_remark": "Covered",
-            "remark_status": "AGREED",
-            "source": {
-                "sheet_name": "RFQ Package Policy",
-                "excel_row": 82,
-                "clause_cell": "B82",
-                "requirement_cell": "C82",
-                "uw_remark_cell": "F82"
-            }
-        }
-    ]
-}
-```
+## Notes for Frontend Integrations
 
----
-
-## Merged Policy Output
-
-Located inside:
+Prefer consuming merged outputs:
 
 ```text
 results/merged/
 ```
 
-Example:
+Preserve the `source` object on clauses for Excel cell traceability.
 
-```json
-{
-    "policy": "Neon Signage",
-    "clauses": [
-        {
-            "excel_row": 82,
-            "clause": "FAR Clause",
-            "requirement": "Required",
-            "insurers": [
-                {
-                    "company": "ABC Insurance",
-                    "uw_remark": "Covered",
-                    "remark_status": "AGREED"
-                },
-                {
-                    "company": "XYZ Insurance",
-                    "uw_remark": "Not Agreed",
-                    "remark_status": "NOT_AGREED"
-                }
-            ]
-        }
-    ]
-}
+Existing Python imports such as the following remain supported:
+
+```python
+from backend.llm.policy_clause_extractor import extract_policy_clauses
+from backend.gap_analysis.process_policy import process_policy
+from backend.gap_analysis.policy_merger import merge_policy_files, json_to_excel
+from backend.extraction.policy_block_extractor import extract_policy_block
 ```
 
----
+## Extensibility
 
-## Notes For Frontend
+The codebase is structured for incremental production features:
 
-Frontend should primarily consume:
+- **PostgreSQL** — implement `repositories/` interfaces and swap filesystem persistence
+- **Authentication** — add middleware / dependencies in `api/` without changing service logic
+- **Background workers** — move long-running proposal processing from the request path into a queue consumer that calls the same services
+- **Config** — promote settings from `core/config.py` and optional `.env` values
 
-```text
-results/merged/
-```
+## License
 
-These files contain side-by-side insurer comparisons and are intended for UI rendering.
-
-The `source` object should be preserved because it provides traceability back to the original Excel sheet and cell locations.
+Proprietary / internal use unless otherwise specified by the repository owner.
