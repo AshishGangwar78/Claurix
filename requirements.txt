@@ -18,3 +18,9 @@ ollama==0.6.2
 # Optional semantic embeddings for premium label matching
 # (falls back to a lightweight local embedding if unavailable)
 sentence-transformers>=2.7.0
+
+# Copilot / LangGraph
+langgraph>=0.2.0
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.9
+
